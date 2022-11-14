@@ -310,6 +310,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1407035111}
+  - component: {fileID: 1407035114}
+  - component: {fileID: 1407035113}
+  - component: {fileID: 1407035112}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -332,3 +335,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1407035112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407035110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95f54347d1dffe94bbd3248e04ae22de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1407035113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407035110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d54cd67508bfd44a43c820d3b5da49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stickValue: {x: 0, y: 0}
+--- !u!114 &1407035114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1407035110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efbf70139acc28e4ca54d2715b8017f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementManager: {fileID: 1407035112}
+  inputManager: {fileID: 1407035113}

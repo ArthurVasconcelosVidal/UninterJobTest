@@ -24,7 +24,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""GameAction"",
+            ""name"": ""PlayerActions"",
             ""id"": ""dab94763-c8fa-4f82-bd94-235b05ce4cd4"",
             ""actions"": [
                 {
@@ -140,10 +140,10 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": []
 }");
-        // GameAction
-        m_GameAction = asset.FindActionMap("GameAction", throwIfNotFound: true);
-        m_GameAction_LeftStick = m_GameAction.FindAction("LeftStick", throwIfNotFound: true);
-        m_GameAction_SouthButton = m_GameAction.FindAction("SouthButton", throwIfNotFound: true);
+        // PlayerActions
+        m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
+        m_PlayerActions_LeftStick = m_PlayerActions.FindAction("LeftStick", throwIfNotFound: true);
+        m_PlayerActions_SouthButton = m_PlayerActions.FindAction("SouthButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -200,34 +200,34 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // GameAction
-    private readonly InputActionMap m_GameAction;
-    private IGameActionActions m_GameActionActionsCallbackInterface;
-    private readonly InputAction m_GameAction_LeftStick;
-    private readonly InputAction m_GameAction_SouthButton;
-    public struct GameActionActions
+    // PlayerActions
+    private readonly InputActionMap m_PlayerActions;
+    private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
+    private readonly InputAction m_PlayerActions_LeftStick;
+    private readonly InputAction m_PlayerActions_SouthButton;
+    public struct PlayerActionsActions
     {
         private @PlayerInput m_Wrapper;
-        public GameActionActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @LeftStick => m_Wrapper.m_GameAction_LeftStick;
-        public InputAction @SouthButton => m_Wrapper.m_GameAction_SouthButton;
-        public InputActionMap Get() { return m_Wrapper.m_GameAction; }
+        public PlayerActionsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @LeftStick => m_Wrapper.m_PlayerActions_LeftStick;
+        public InputAction @SouthButton => m_Wrapper.m_PlayerActions_SouthButton;
+        public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(GameActionActions set) { return set.Get(); }
-        public void SetCallbacks(IGameActionActions instance)
+        public static implicit operator InputActionMap(PlayerActionsActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActionsActions instance)
         {
-            if (m_Wrapper.m_GameActionActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerActionsActionsCallbackInterface != null)
             {
-                @LeftStick.started -= m_Wrapper.m_GameActionActionsCallbackInterface.OnLeftStick;
-                @LeftStick.performed -= m_Wrapper.m_GameActionActionsCallbackInterface.OnLeftStick;
-                @LeftStick.canceled -= m_Wrapper.m_GameActionActionsCallbackInterface.OnLeftStick;
-                @SouthButton.started -= m_Wrapper.m_GameActionActionsCallbackInterface.OnSouthButton;
-                @SouthButton.performed -= m_Wrapper.m_GameActionActionsCallbackInterface.OnSouthButton;
-                @SouthButton.canceled -= m_Wrapper.m_GameActionActionsCallbackInterface.OnSouthButton;
+                @LeftStick.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftStick;
+                @LeftStick.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftStick;
+                @LeftStick.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnLeftStick;
+                @SouthButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSouthButton;
+                @SouthButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSouthButton;
+                @SouthButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSouthButton;
             }
-            m_Wrapper.m_GameActionActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @LeftStick.started += instance.OnLeftStick;
@@ -239,8 +239,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             }
         }
     }
-    public GameActionActions @GameAction => new GameActionActions(this);
-    public interface IGameActionActions
+    public PlayerActionsActions @PlayerActions => new PlayerActionsActions(this);
+    public interface IPlayerActionsActions
     {
         void OnLeftStick(InputAction.CallbackContext context);
         void OnSouthButton(InputAction.CallbackContext context);
