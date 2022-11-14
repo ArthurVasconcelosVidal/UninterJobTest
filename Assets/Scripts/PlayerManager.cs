@@ -2,17 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+public class PlayerManager : MonoBehaviour{
+    public static PlayerManager instance;
+    
+    [SerializeField] MovementManager movementManager;
+    [SerializeField] InputManager inputManager;
+
+    public MovementManager MovementManager { get => movementManager; }
+    public InputManager InputManager { get => inputManager; }
+
+    void Awake() {
+        SingletonCreation();    
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void SingletonCreation(){
+        if(instance)
+            Destroy(this);
+        else
+            instance = this;
     }
 }
