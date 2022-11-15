@@ -18,9 +18,7 @@ public abstract class InteractionBase : MonoBehaviour{
         triggerCollider.enabled = true;
     }
 
-    void OnAction(object sender, InputAction.CallbackContext buttonContext) {
-        ActionBehavior();
-    }
+    void OnAction(object sender, InputAction.CallbackContext buttonContext) => ActionBehavior();
     
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag(GameTags.Player.ToString()) )
