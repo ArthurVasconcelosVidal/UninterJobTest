@@ -383,6 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f54347d1dffe94bbd3248e04ae22de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
+  rotationSpeed: 2
 --- !u!114 &1407035113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -410,6 +412,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementManager: {fileID: 1407035112}
   inputManager: {fileID: 1407035113}
+  meshObject: {fileID: 425751983}
+  playerRigidBody: {fileID: 1407035116}
 --- !u!136 &1407035115
 CapsuleCollider:
   m_ObjectHideFlags: 0
