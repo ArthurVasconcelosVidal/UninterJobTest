@@ -15,6 +15,7 @@ public class LampInteraction : InteractionBase{
             LightLamp.SetActive(true);
             NoLightLamp.SetActive(false);
         }
+        
         lampState = !lampState;
         CoolDownTrigger(actionCoolDown);
     }

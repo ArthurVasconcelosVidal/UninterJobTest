@@ -72,6 +72,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6875871736252141298}
     m_Modifications:
+    - target: {fileID: 1351578667173765610, guid: 7970c12d6b19a504fbc82353b8a43abe, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1351578667173765610, guid: 7970c12d6b19a504fbc82353b8a43abe, type: 3}
+      propertyPath: m_Shadows.m_Strength
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 8060405944448375545, guid: 7970c12d6b19a504fbc82353b8a43abe, type: 3}
       propertyPath: m_Name
       value: LampLight_0

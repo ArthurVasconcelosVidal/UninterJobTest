@@ -8,4 +8,4 @@ Found in: https://freesound.org/people/LittleRobotSoundFactory/sounds/270387/
 
 "Door-locked" - https://freesound.org/people/pp87/sounds/341302/ by pp87
 
-"Key-Falling" - https://freesound.org/people/eliasheuninck/sounds/3543/ by eliasheuninck
+"Key-hit" - https://freesound.org/people/eliasheuninck/sounds/3543/ by eliasheuninck

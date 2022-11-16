@@ -468,6 +468,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorPivot_Stairs_F2
       objectReference: {fileID: 0}
+    - target: {fileID: 1640114117214508421, guid: d24adc557d6cb39488e7768d14e66be4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1640114117214508423, guid: d24adc557d6cb39488e7768d14e66be4, type: 3}
       propertyPath: keyToOpenDoor
       value: 
@@ -12546,7 +12550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1537678698
 Transform:
   m_ObjectHideFlags: 0
@@ -16632,7 +16636,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1985976266
 Transform:
   m_ObjectHideFlags: 0

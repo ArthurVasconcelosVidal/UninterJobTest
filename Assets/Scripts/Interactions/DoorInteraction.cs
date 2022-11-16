@@ -11,6 +11,7 @@ public class DoorInteraction : InteractionBase{
     [SerializeField] bool openToInside;
     [SerializeField] Animator doorAnimator;
     [SerializeField] ItemAssetBase keyToOpenDoor;
+    GameObject keyObject;
     protected override void ActionBehavior(){
         if (!alreadyOpen && VerifyTheKey()){
             alreadyOpen = true;
@@ -34,6 +35,15 @@ public class DoorInteraction : InteractionBase{
 
     void UseTheKeyToUnlock(){
         doorAnimator.Play(DoorAnimations.UnlockWithKey.ToString());
+    }
+
+    void KeyMeshToggle(){
+        //Called by UnlockWithKey animation
+        if (PlayerManager.HoldObject.activeSelf){
+            PlayerManager.HoldObject.SetActive(false);
+        }
+        else
+            PlayerManager.HoldObject.SetActive(true);
     }
 
     void OpenDoor(){
