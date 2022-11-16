@@ -39,5 +39,4 @@ public class DoorInteraction : InteractionBase{
         else doorAnimator.Play(DoorAnimations.DoorOpenToOutside.ToString());
         NotificationManager.ShowNotification("A porta está aberta");
     }
-
 }

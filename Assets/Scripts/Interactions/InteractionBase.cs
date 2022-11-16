@@ -10,7 +10,8 @@ public abstract class InteractionBase : MonoBehaviour{
     protected abstract void ActionBehavior(); //Obligatory function
     protected virtual void CancelActionBehavior() {} //Optional function
     void OnAction(object sender, InputAction.CallbackContext buttonContext) => ActionBehavior();
-    void OnCanceledAction(object sender, InputAction.CallbackContext buttonContext) => CancelActionBehavior(); 
+    void OnCanceledAction(object sender, InputAction.CallbackContext buttonContext) => CancelActionBehavior();
+     
     protected async void CoolDownTrigger(float coolDownTime){
         PlayerInput.OnActionButtonPerformed -= OnAction;
         triggerCollider.enabled = false;
@@ -19,15 +20,23 @@ public abstract class InteractionBase : MonoBehaviour{
         triggerCollider.enabled = true;
     }
 
-    void OnTriggerEnter(Collider other) {
-        if(other.gameObject.CompareTag(GameTags.Player.ToString()) )
+    protected void SubscribeActions(bool state) {
+        if (state){
             PlayerInput.OnActionButtonPerformed += OnAction;
             PlayerInput.OnCancelActionButtonPerformed += OnCanceledAction;
+        }else{
+            PlayerInput.OnActionButtonPerformed -= OnAction;
+            PlayerInput.OnCancelActionButtonPerformed -= OnCanceledAction;
+        }
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if(other.gameObject.CompareTag(GameTags.Player.ToString()) )
+            SubscribeActions(true);
     }
 
     void OnTriggerExit(Collider other) {
         if(other.gameObject.CompareTag(GameTags.Player.ToString()))
-            PlayerInput.OnActionButtonPerformed -= OnAction;
-            PlayerInput.OnCancelActionButtonPerformed -= OnCanceledAction;
+            SubscribeActions(false);
     }
 }
