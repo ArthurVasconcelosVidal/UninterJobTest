@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 public class DoorInteraction : InteractionBase{
     bool alreadyOpen = false;
     [SerializeField] bool openToInside;
-    [SerializeField] float rotationSpeed;
     [SerializeField] Animator doorAnimator;
     protected override void ActionBehavior(){
         if (!alreadyOpen){
             alreadyOpen = true;
             UseTheKeyToUnlock();
-            
         }
     }
 
@@ -21,6 +19,7 @@ public class DoorInteraction : InteractionBase{
     }
 
     void OpenDoor(){
+        //Called by UnlockWithKey animation
         if (openToInside) doorAnimator.Play(DoorAnimations.DoorOpenToInside.ToString());
         else doorAnimator.Play(DoorAnimations.DoorOpenToOutside.ToString());
     }

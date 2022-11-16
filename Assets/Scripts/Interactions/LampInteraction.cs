@@ -6,7 +6,7 @@ public class LampInteraction : InteractionBase{
     [SerializeField] GameObject LightLamp;
     [SerializeField] GameObject NoLightLamp;
     [SerializeField] bool lampState = false;
-    [SerializeField] float actionCoolDown = 2;
+    [SerializeField] float actionCoolDown = 1;
     protected override void ActionBehavior(){
         if (lampState){
             LightLamp.SetActive(false);
