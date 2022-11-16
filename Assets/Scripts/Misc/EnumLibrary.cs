@@ -1,5 +1,6 @@
 public enum GameTags{
-    Player
+    Player,
+    Key
 }
 
 public enum DoorAnimations{
