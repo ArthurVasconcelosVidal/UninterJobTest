@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 public class DoorInteraction : InteractionBase{
     PlayerManager PlayerManager { get => PlayerManager.instance; }
+    NotificationManager NotificationManager { get => MainCanvasManager.instance.NotificationManager; }
     bool alreadyOpen = false;
     [SerializeField] bool openToInside;
     [SerializeField] Animator doorAnimator;
@@ -36,6 +37,7 @@ public class DoorInteraction : InteractionBase{
         //Called by UnlockWithKey animation
         if (openToInside) doorAnimator.Play(DoorAnimations.DoorOpenToInside.ToString());
         else doorAnimator.Play(DoorAnimations.DoorOpenToOutside.ToString());
+        NotificationManager.ShowNotification("A porta está aberta");
     }
 
 }
