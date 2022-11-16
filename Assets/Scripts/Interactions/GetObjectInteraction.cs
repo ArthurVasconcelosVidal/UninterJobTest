@@ -18,7 +18,7 @@ public class GetObjectInteraction : InteractionBase{
     public ItemAssetBase ItemAsset { get => itemAsset; }
 
     protected override void ActionBehavior(){
-        if (!isUsing){
+        if (!isUsing && HoldObject.transform.childCount == 0){
             isUsing = true;
             triggerCollider.enabled = false;
             ToHoldPoint(HoldObject, toHoldPointSpeed);
