@@ -178,7 +178,7 @@ MonoBehaviour:
   objectRb: {fileID: 1897379826944150568}
   objectCollider: {fileID: 1897379826752518249}
   toHoldPointSpeed: 2
-  throwForce: 4
+  throwForce: 8
   triggerCoolDownTime: 2
   isUsing: 0
   canThrowTheObject: 1
