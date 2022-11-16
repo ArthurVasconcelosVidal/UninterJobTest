@@ -12,7 +12,8 @@ public class InputManager : MonoBehaviour{
     [SerializeField] Vector2 stickValue = Vector2.zero;
 
     public event EventHandler<InputAction.CallbackContext> 
-    OnActionButtonPerformed, OnActionButtonCanceled;
+    OnActionButtonPerformed, OnActionButtonCanceled,
+    OnCancelActionButtonPerformed, OnCancelActionButtonCanceled;
 
     public Vector2 StickValue { get => stickValue; }
 
@@ -35,10 +36,12 @@ public class InputManager : MonoBehaviour{
 
     void ActionButtonPerformedConfig(){
         playerInput.PlayerActions.SouthButton.performed += ContextMenu => OnActionButtonPerformed?.Invoke(this,ContextMenu);
+        playerInput.PlayerActions.EastButton.performed += ContextMenu => OnCancelActionButtonPerformed?.Invoke(this, ContextMenu);
     }
 
     void ActionButtonCanceledConfig(){
         playerInput.PlayerActions.SouthButton.canceled += ContextMenu => OnActionButtonCanceled?.Invoke(this,ContextMenu);
+        playerInput.PlayerActions.EastButton.canceled += ContextMenu => OnCancelActionButtonCanceled?.Invoke(this, ContextMenu);
     }
 
     void OnEnable() {

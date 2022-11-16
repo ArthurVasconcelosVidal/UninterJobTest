@@ -4,15 +4,28 @@ using UnityEngine;
 using System.Threading.Tasks;
 
 public class DoorInteraction : InteractionBase{
+    PlayerManager PlayerManager { get => PlayerManager.instance; }
     bool alreadyOpen = false;
     [SerializeField] bool openToInside;
     [SerializeField] Animator doorAnimator;
-    [SerializeField] GameObject keyObject;
+    [SerializeField] ItemAssetBase keyToOpenDoor;
     protected override void ActionBehavior(){
-        if (!alreadyOpen && keyObject){
+        if (!alreadyOpen && VerifyTheKey()){
             alreadyOpen = true;
             UseTheKeyToUnlock();
         }
+    }
+
+    bool VerifyTheKey(){
+        if(PlayerManager.HoldObject.transform.childCount == 0)
+            return false;
+
+        ItemAssetBase playerObject = PlayerManager.HoldObject.GetComponentInChildren<GetObjectInteraction>().ItemAsset;
+
+        if (playerObject != null && playerObject == keyToOpenDoor)
+            return true;
+        else 
+            return false;
     }
 
     void UseTheKeyToUnlock(){
@@ -23,19 +36,6 @@ public class DoorInteraction : InteractionBase{
         //Called by UnlockWithKey animation
         if (openToInside) doorAnimator.Play(DoorAnimations.DoorOpenToInside.ToString());
         else doorAnimator.Play(DoorAnimations.DoorOpenToOutside.ToString());
-    }
-
-    void OnTriggerEnter(Collider other) {
-        if(other.gameObject.CompareTag(GameTags.Key.ToString())){
-            keyObject = other.gameObject;
-            keyObject.GetComponent<GetObjectInteraction>().CanThrowTheObject = false;
-        }    
-    }
-    void OnTriggerExit(Collider other){
-        if(other.gameObject.CompareTag(GameTags.Key.ToString())){
-            keyObject = null;
-            keyObject.GetComponent<GetObjectInteraction>().CanThrowTheObject = true;
-        } 
     }
 
 }

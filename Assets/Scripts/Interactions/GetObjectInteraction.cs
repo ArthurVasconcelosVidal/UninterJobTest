@@ -4,8 +4,6 @@ using UnityEngine;
 using System.Threading.Tasks;
 
 public class GetObjectInteraction : InteractionBase{
-    GameObject MeshObject { get => PlayerManager.instance.MeshObject; }
-    GameObject HoldObject { get => PlayerManager.instance.HoldObject; }
     [SerializeField] Rigidbody objectRb;
     [SerializeField] Collider objectCollider;
     [SerializeField] float toHoldPointSpeed;
@@ -13,20 +11,28 @@ public class GetObjectInteraction : InteractionBase{
     [SerializeField] float triggerCoolDownTime = 2;
     [SerializeField] bool isUsing = false;
     [SerializeField] bool canThrowTheObject = true; 
+    [SerializeField] ItemAssetBase itemAsset;
+    GameObject MeshObject { get => PlayerManager.instance.MeshObject; }
+    GameObject HoldObject { get => PlayerManager.instance.HoldObject; }
     public bool CanThrowTheObject { get => canThrowTheObject; set => canThrowTheObject = value; }
-    
+    public ItemAssetBase ItemAsset { get => itemAsset; }
+
     protected override void ActionBehavior(){
         if (!isUsing){
             isUsing = true;
             triggerCollider.enabled = false;
             ToHoldPoint(HoldObject, toHoldPointSpeed);
             this.transform.SetParent(HoldObject.transform);
-        }else if(canThrowTheObject){
+        }
+    }
+
+    protected override void CancelActionBehavior(){
+        if(isUsing && canThrowTheObject){
             isUsing = false;
             this.transform.SetParent(null);
             ThrowObject(throwForce);
             CoolDownTrigger(triggerCoolDownTime);
-        } 
+        }
     }
 
     async void ToHoldPoint(GameObject point, float speed) {

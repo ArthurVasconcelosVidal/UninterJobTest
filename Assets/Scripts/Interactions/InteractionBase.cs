@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 public abstract class InteractionBase : MonoBehaviour{
     protected InputManager PlayerInput { get => PlayerManager.instance.InputManager; }
     [SerializeField] protected Collider triggerCollider;
-    
-    protected abstract void ActionBehavior();
-
+    protected abstract void ActionBehavior(); //Obligatory function
+    protected virtual void CancelActionBehavior() {} //Optional function
+    void OnAction(object sender, InputAction.CallbackContext buttonContext) => ActionBehavior();
+    void OnCanceledAction(object sender, InputAction.CallbackContext buttonContext) => CancelActionBehavior(); 
     protected async void CoolDownTrigger(float coolDownTime){
         PlayerInput.OnActionButtonPerformed -= OnAction;
         triggerCollider.enabled = false;
@@ -18,15 +19,15 @@ public abstract class InteractionBase : MonoBehaviour{
         triggerCollider.enabled = true;
     }
 
-    void OnAction(object sender, InputAction.CallbackContext buttonContext) => ActionBehavior();
-    
     void OnTriggerEnter(Collider other) {
         if(other.gameObject.CompareTag(GameTags.Player.ToString()) )
             PlayerInput.OnActionButtonPerformed += OnAction;
+            PlayerInput.OnCancelActionButtonPerformed += OnCanceledAction;
     }
 
     void OnTriggerExit(Collider other) {
         if(other.gameObject.CompareTag(GameTags.Player.ToString()))
             PlayerInput.OnActionButtonPerformed -= OnAction;
+            PlayerInput.OnCancelActionButtonPerformed -= OnCanceledAction;
     }
 }

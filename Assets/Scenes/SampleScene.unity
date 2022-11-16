@@ -400,6 +400,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorPivot_Stairs_F2
       objectReference: {fileID: 0}
+    - target: {fileID: 1640114117214508423, guid: d24adc557d6cb39488e7768d14e66be4, type: 3}
+      propertyPath: keyToOpenDoor
+      value: 
+      objectReference: {fileID: 11400000, guid: 161887b89393a27468c71ad567933648, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d24adc557d6cb39488e7768d14e66be4, type: 3}
 --- !u!4 &47869425 stripped
@@ -13039,6 +13043,7 @@ MonoBehaviour:
   triggerCoolDownTime: 2
   isUsing: 0
   canThrowTheObject: 1
+  itemAsset: {fileID: 11400000, guid: 161887b89393a27468c71ad567933648, type: 2}
 --- !u!135 &1669831845
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -16201,6 +16206,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DoorPivot_F1_Stairs
       objectReference: {fileID: 0}
+    - target: {fileID: 1640114117214508423, guid: d24adc557d6cb39488e7768d14e66be4, type: 3}
+      propertyPath: keyToOpenDoor
+      value: 
+      objectReference: {fileID: 11400000, guid: 161887b89393a27468c71ad567933648, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d24adc557d6cb39488e7768d14e66be4, type: 3}
 --- !u!1001 &6875871737579597481

@@ -44,6 +44,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EastButton"",
+                    ""type"": ""Button"",
+                    ""id"": ""c3ebde75-e8e7-408e-80e6-16ca1a7ab92f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +143,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""SouthButton"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d95abc8e-d70d-4587-9e8b-aa43ad9bccf0"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EastButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92f2a3b5-18d2-499c-8fe4-58bc372397c4"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""EastButton"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -144,6 +175,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_LeftStick = m_PlayerActions.FindAction("LeftStick", throwIfNotFound: true);
         m_PlayerActions_SouthButton = m_PlayerActions.FindAction("SouthButton", throwIfNotFound: true);
+        m_PlayerActions_EastButton = m_PlayerActions.FindAction("EastButton", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,12 +237,14 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_LeftStick;
     private readonly InputAction m_PlayerActions_SouthButton;
+    private readonly InputAction m_PlayerActions_EastButton;
     public struct PlayerActionsActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerActionsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @LeftStick => m_Wrapper.m_PlayerActions_LeftStick;
         public InputAction @SouthButton => m_Wrapper.m_PlayerActions_SouthButton;
+        public InputAction @EastButton => m_Wrapper.m_PlayerActions_EastButton;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -226,6 +260,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @SouthButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSouthButton;
                 @SouthButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSouthButton;
                 @SouthButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSouthButton;
+                @EastButton.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnEastButton;
+                @EastButton.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnEastButton;
+                @EastButton.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnEastButton;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -236,6 +273,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @SouthButton.started += instance.OnSouthButton;
                 @SouthButton.performed += instance.OnSouthButton;
                 @SouthButton.canceled += instance.OnSouthButton;
+                @EastButton.started += instance.OnEastButton;
+                @EastButton.performed += instance.OnEastButton;
+                @EastButton.canceled += instance.OnEastButton;
             }
         }
     }
@@ -244,5 +284,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnLeftStick(InputAction.CallbackContext context);
         void OnSouthButton(InputAction.CallbackContext context);
+        void OnEastButton(InputAction.CallbackContext context);
     }
 }
